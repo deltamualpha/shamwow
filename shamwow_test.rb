@@ -19,6 +19,7 @@ class TestShamwow < Test::Unit::TestCase
   end
 
   def test_sha2
+    assert_equal(Digest::SHA2.hexdigest(''), sha2(""))
     assert_equal(Digest::SHA2.hexdigest('abc'), sha2("abc"))
     assert_equal(Digest::SHA2.hexdigest("上一页"), sha2("上一页"))
     assert_equal(Digest::SHA2.hexdigest("😀"), sha2("😀"))
