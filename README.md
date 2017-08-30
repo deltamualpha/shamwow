@@ -16,4 +16,5 @@ This was fun.
 
 ## Obligatory
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/F3lrhPeK6gU" frameborder="0" allowfullscreen></iframe>
+[![ShamWOW](https://img.youtube.com/vi/F3lrhPeK6gU/0.jpg)](https://www.youtube.com/watch?v=F3lrhPeK6gU)
+
