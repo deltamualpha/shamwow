@@ -6,7 +6,11 @@ end
 
 # treat all numbers as if they are 32-bit integers
 def ror(num, shift)
-  ((num >> shift) | (num << (32-shift)) & ((2 ** 32) - 1))
+  (((num >> shift) | (num << (32-shift))) & ((2 ** 32) - 1))
+end
+
+def lor(num, shift)
+  (((num << shift) | (num >> (32-shift))) & ((2 ** 32) - 1))
 end
 
 def sha2(message)
@@ -97,4 +101,79 @@ def sha2(message)
   end
 
   ("%08x" % h0).concat("%08x" % h1).concat("%08x" % h2).concat("%08x" % h3).concat("%08x" % h4).concat("%08x" % h5).concat("%08x" % h6).concat("%08x" % h7)
+end
+
+def sha1(message)
+
+  message_in_bits = message.unpack("B*")[0]
+
+  h0 = 0x67452301
+  h1 = 0xEFCDAB89
+  h2 = 0x98BADCFE
+  h3 = 0x10325476
+  h4 = 0xC3D2E1F0
+
+  len = message_in_bits.length
+
+  bits = message_in_bits
+  bits << "1"
+  bits << "0" * (512 - ((bits.length + 64) % 512))
+  bits << "%064b" % len
+
+  chunked = chunker(bits, 512)
+
+  i = 0
+  while i < chunked.length
+    m = []
+
+    message = chunker(chunked[i], 32)
+
+    message.each_with_index { |word, index| m[index] = word.to_i(2) }
+
+    (16..79).each { |word|
+      m[word] = lor((m[word-3] ^ m[word-8] ^ m[word-14] ^ m[word-16]), 1) & 0xFFFFFFFF
+    }
+
+    a = h0
+    b = h1
+    c = h2
+    d = h3
+    e = h4
+
+    (0..79).each { |word|
+      if (0..19).include? word
+        f = ((b & c) | (~b & d))
+        k = 0x5A827999
+      end
+      if (20..39).include? word
+        f = (b ^ c ^ d)
+        k = 0x6ED9EBA1
+      end
+      if (40..59).include? word
+        f = (b & c) | (b & d) | (c & d) 
+        k = 0x8F1BBCDC
+      end
+      if (60..79).include? word
+        f = (b ^ c ^ d)
+        k = 0xCA62C1D6
+      end
+
+      temp = (lor(a, 5) + f + e + k + m[word]) & 0xFFFFFFFF
+      e = d
+      d = c
+      c = lor(b, 30)
+      b = a
+      a = temp
+    }
+
+    h0 = (h0 + a) & 0xFFFFFFFF
+    h1 = (h1 + b) & 0xFFFFFFFF
+    h2 = (h2 + c) & 0xFFFFFFFF
+    h3 = (h3 + d) & 0xFFFFFFFF
+    h4 = (h4 + e) & 0xFFFFFFFF
+
+    i = i + 1
+  end
+
+  ("%08x" % h0).concat("%08x" % h1).concat("%08x" % h2).concat("%08x" % h3).concat("%08x" % h4)
 end
