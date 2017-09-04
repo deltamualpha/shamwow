@@ -131,7 +131,7 @@ def sha1(message)
     message.each_with_index { |word, index| m[index] = word.to_i(2) }
 
     (16..79).each { |word|
-      m[word] = lor((m[word-3] ^ m[word-8] ^ m[word-14] ^ m[word-16]), 1) & 0xFFFFFFFF
+      m[word] = lor((m[word-3] ^ m[word-8] ^ m[word-14] ^ m[word-16]), 1)
     }
 
     a = h0
