@@ -1,6 +1,6 @@
 # SHAmwow
 
-Sometimes you just want to understand how your hashing algorithms works, so you implement them yourself.
+Sometimes you just want to understand how your hashing algorithms work, so you implement them yourself.
 
 It should go without saying that this was just for fun, and you should never, ever, _ever_ roll your own cryptography primatives for any  purpose other than education!
 
