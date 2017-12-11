@@ -74,6 +74,7 @@ def sha2(message)
       s1 = ror(e, 6) ^ ror(e, 11) ^ ror(e, 25)
       ch = (e & f) ^ (~(e) & g)
       temp1 = (h + s1 + ch + k[word] + m[word]) & 0xFFFFFFFF
+
       s0 = ror(a, 2) ^ ror(a, 13) ^ ror(a, 22)
       maj = (a & b) ^ (a & c) ^ (b & c)
       temp2 = (s0 + maj) & 0xFFFFFFFF
