@@ -4,6 +4,10 @@ Sometimes you just want to understand how your hashing algorithms work, so you i
 
 It should go without saying that this was just for fun, and you should never, ever, _ever_ roll your own cryptography primatives for any  purpose other than education!
 
+## Talk
+
+I gave a talk on this project at [Papers We Love NYC](http://paperswelove.org/2017/video/david-ashby-shamwow/)! The [PDF](https://github.com/deltamualpha/shamwow/blob/master/slides.pdf), [Keynote file](https://github.com/deltamualpha/shamwow/blob/master/slides.key), and [PDF-with-nodes](https://github.com/deltamualpha/shamwow/blob/master/slides-with-notes.pdf) of the slides are also in this repo.
+
 ## sha1
 
 The sha1 function in `shamwow.rb` implements the SHA1 hashing function in Ruby, outputting the 160-bit hash as a hexadecimal string.
