@@ -22,6 +22,8 @@ The sha2 function in `shamwow.rb` implements the SHA-256 hashing function in Rub
 * wikipedia's pseudocode breakdown: <https://en.wikipedia.org/wiki/SHA-2#Pseudocode>
 * a JS implementation that helped as I was debugging some boneheaded mistakes: <http://www.movable-type.co.uk/scripts/sha256.html>
 
+* slides of a talk explaining the steps <https://speakerd.s3.amazonaws.com/presentations/c7c8df2206074d83b3d18fcba3287328/slides.pdf>
+
 ## Tests
 
 `shamwow_test.rb` contains a few sanity tests for the bit-rotation functions and for the hashes themselves, testing against the output of the `Digest` gem in the standard library.
